@@ -31,10 +31,20 @@ dynamic responseJson;
     return responseJson;
   }
   dynamic returnResponse (http.Response response){
-    switch(response){
+    switch(response.statusCode){
       case 200:
       dynamic responseJson=jsonDecode(response.body);
       return responseJson;
+      case 301:
+      // Handle the redirection by using the 'Location' header
+      String newUrl = response.headers['location'].toString();
+      if (newUrl != null) {
+        // You may choose to recursively fetch the new URL
+        return getGetApiResponse(newUrl);
+      } else {
+        throw FetchDataException('Redirected but no new location found');
+      }
+
       case 400:
       throw BadRequestException(response.body.toString());
       case 404:

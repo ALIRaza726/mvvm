@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mvvm/res/components/round_button.dart';
 import 'package:mvvm/utils/routes/routes_name.dart';
 import 'package:mvvm/utils/routes/utils.dart';
-import 'package:mvvm/view_model/auth_view_model.dart';
-import 'package:mvvm/view_model/auth_view_model.dart';
 import 'package:mvvm/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -93,16 +90,16 @@ class _LoginViewState extends State<LoginView> {
           Utils.flushBarErrorMessage('Piz 8 Digit', context);
         }
         else{
-          // Map data={
-          //   'email': _emailController.toString(),
-          //   'password':_passwordController.toString(),
-
-          // };
-           Map data={
-            'email': 'eve.holt@reqres.in',
-            'password':'cityslicka',
+          Map data={
+            'email': _emailController.toString(),
+            'password':_passwordController.toString(),
 
           };
+          //  Map data={
+          //   "email": "eve.holt@reqres.in",
+          //   "password":"cityslicka",
+
+          // };
           authViewModel.loginApi(data,context);
           print('Api hit');
 
